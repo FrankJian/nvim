@@ -30,7 +30,7 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
 	let has_machine_specific_file = 0
 	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
-source $XDG_CONFIG_HOME/nvim/_machine_specific.vim
+source $HOME/.config/nvim/_machine_specific.vim
 
 
 " ====================
@@ -39,10 +39,9 @@ source $XDG_CONFIG_HOME/nvim/_machine_specific.vim
 " ===
 " === System
 " ===
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 let &t_ut=''
 set autochdir
-
 
 " ===
 " === Editor behavior
@@ -141,11 +140,11 @@ noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 noremap <LEADER>rv :e .nvimrc<CR>
 
 " Undo operations
-noremap l u
+"noremap l u
 
 " Insert Key
-noremap k i
-noremap K I
+"noremap k i
+"noremap K I
 
 " make Y to copy till the end of the line
 nnoremap Y y$
@@ -182,12 +181,12 @@ noremap <silent> <LEADER>o za
 " < n   i >
 "     e
 "     v
-noremap <silent> u k
-noremap <silent> n h
-noremap <silent> e j
-noremap <silent> i l
-noremap <silent> gu gk
-noremap <silent> ge gj
+"noremap <silent> u k
+"noremap <silent> n h
+"noremap <silent> e j
+"noremap <silent> i l
+"noremap <silent> gu gk
+"noremap <silent> ge gj
 noremap <silent> \v v$h
 
 " U/E keys for 5 times u/e (faster navigation)
@@ -195,16 +194,16 @@ noremap <silent> U 5k
 noremap <silent> E 5j
 
 " N key: go to the start of the line
-noremap <silent> N 0
+"noremap <silent> N 0
 " I key: go to the end of the line
-noremap <silent> I $
+"noremap <silent> I $
 
 " Faster in-line navigation
 noremap W 5w
 noremap B 5b
 
 " set h (same as n, cursor left) to 'end of word'
-noremap h e
+"noremap h e
 
 " Ctrl + U or E will move up/down the view port without moving the cursor
 noremap <C-U> 5<C-y>
@@ -212,10 +211,10 @@ noremap <C-E> 5<C-e>
 
 
 
-source $XDG_CONFIG_HOME/nvim/cursor.vim
+"source $HOME/.config/nvim/cursor.vim
 
 "If you use Qwerty keyboard, uncomment the next line.
-"source $XDG_CONFIG_HOME/nvim/cursor_for_qwerty.vim
+source $HOME/.config/nvim/cursor_for_qwerty.vim
 
 " ===
 " === Insert Mode Cursor Movement
@@ -239,8 +238,8 @@ cnoremap <M-w> <S-Right>
 " ===
 " === Searching
 " ===
-noremap - N
-noremap = n
+"noremap - N
+"noremap = n
 
 
 " ===
@@ -248,19 +247,19 @@ noremap = n
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
 noremap <LEADER>w <C-w>w
-noremap <LEADER>u <C-w>k
-noremap <LEADER>e <C-w>j
-noremap <LEADER>n <C-w>h
-noremap <LEADER>i <C-w>l
+noremap <LEADER>k <C-w>k
+noremap <LEADER>j <C-w>j
+noremap <LEADER>h <C-w>h
+noremap <LEADER>l <C-w>l
 noremap qf <C-w>o
 
 " Disable the default s key
 noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap se :set splitbelow<CR>:split<CR>
-noremap sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap sj :set splitbelow<CR>:split<CR>
+noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 noremap si :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
@@ -270,9 +269,9 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+noremap ssh <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+noremap ssv <C-w>t<C-w>H
 
 " Rotate screens
 noremap srh <C-w>b<C-w>K
@@ -299,7 +298,7 @@ noremap tmi :+tabmove<CR>
 " === Markdown Settings
 " ===
 " Snippets
-source $XDG_CONFIG_HOME/nvim/md-snippets.vim
+source $HOME/.config/nvim/md-snippets.vim
 " auto spell
 autocmd BufRead,BufNewFile *.md setlocal spell
 
@@ -420,6 +419,7 @@ Plug 'RRethy/vim-illuminate'
 "Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'kevinhwang91/rnvimr'
 Plug 'airblade/vim-rooter'
@@ -600,7 +600,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 "color dracula
 "color one
-color deus
+"color deus
 "color gruvbox
 "let ayucolor="light"
 "color ayu
@@ -645,6 +645,7 @@ nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 " ===
 let g:coc_global_extensions = [
 	\ 'coc-css',
+	\ 'coc-sh',
 	\ 'coc-diagnostic',
 	\ 'coc-eslint',
 	\ 'coc-explorer',
@@ -663,7 +664,6 @@ let g:coc_global_extensions = [
 	\ 'coc-stylelint',
 	\ 'coc-syntax',
 	\ 'coc-tailwindcss',
-	\ 'https://github.com/rodrigore/coc-tailwind-intellisense',
 	\ 'coc-tasks',
 	\ 'coc-translator',
 	\ 'coc-tslint-plugin',
@@ -692,7 +692,7 @@ function! Show_documentation()
 		call CocAction('doHover')
 	endif
 endfunction
-nnoremap <LEADER>h :call Show_documentation()<CR>
+nnoremap <LEADER>doc :call Show_documentation()<CR>
 " set runtimepath^=~/.config/nvim/coc-extensions/coc-flutter-tools/
 " let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
 " let $NVIM_COC_LOG_LEVEL = 'debug'
@@ -767,18 +767,19 @@ let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 " ===
 " === FZF
 " ===
-set rtp+=/usr/local/opt/fzf
-set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
-set rtp+=/home/david/.linuxbrew/opt/fzf
-nnoremap <c-p> :Leaderf file<CR>
-" noremap <silent> <C-p> :Files<CR>
+"set rtp+=/usr/local/opt/fzf
+"set rtp+=/usr/bin/fzf
+"set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+"set rtp+=/home/j3xie/.linuxbrew/opt/fzf
+"nnoremap <c-p> :Leaderf file<CR>
+noremap <silent> <C-p> :Files<CR>
 noremap <silent> <C-f> :Rg<CR>
 noremap <silent> <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
 " noremap <silent> <C-l> :Lines<CR>
-noremap <silent> <C-w> :Buffers<CR>
+noremap <silent> <C-i> :Buffers<CR>
 noremap <leader>; :History:<CR>
-
+let $FZF_DEFAULT_OPTS='--layout=reverse'
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
@@ -1272,12 +1273,58 @@ let g:vmt_fence_closing_text = '/TOC'
 " ===
 " === rnvimr
 " ===
-let g:rnvimr_ex_enable = 1
-let g:rnvimr_pick_enable = 1
+"let g:rnvimr_ex_enable = 1
+"let g:rnvimr_pick_enable = 1
+"let g:rnvimr_draw_border = 0
+"" let g:rnvimr_bw_enable = 1
+"highlight link RnvimrNormal CursorLine
+"nnoremap <silent> R :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
+"let g:rnvimr_action = {
+"            \ '<C-t>': 'NvimEdit tabedit',
+"            \ '<C-x>': 'NvimEdit split',
+"            \ '<C-v>': 'NvimEdit vsplit',
+"            \ 'gw': 'JumpNvimCwd',
+"            \ 'yw': 'EmitRangerCwd'
+"            \ }
+"let g:rnvimr_layout = { 'relative': 'editor',
+"            \ 'width': &columns,
+"            \ 'height': &lines,
+"            \ 'col': 0,
+"            \ 'row': 0,
+"            \ 'style': 'minimal' }
+"let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
+
+
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_enable_ex = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_enable_picker = 1
+
+" Disable a border for floating window
 let g:rnvimr_draw_border = 0
-" let g:rnvimr_bw_enable = 1
+
+" Hide the files included in gitignore
+let g:rnvimr_hide_gitignore = 1
+
+" Change the border's color
+let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
+
+" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+let g:rnvimr_enable_bw = 1
+
+" Add a shadow window, value is equal to 100 will disable shadow
+let g:rnvimr_shadow_winblend = 70
+
+" Draw border with both
+let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+
+" Link CursorLine into RnvimrNormal highlight in the Floating window
 highlight link RnvimrNormal CursorLine
+
+
 nnoremap <silent> R :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
+" Map Rnvimr action
 let g:rnvimr_action = {
             \ '<C-t>': 'NvimEdit tabedit',
             \ '<C-x>': 'NvimEdit split',
@@ -1285,13 +1332,53 @@ let g:rnvimr_action = {
             \ 'gw': 'JumpNvimCwd',
             \ 'yw': 'EmitRangerCwd'
             \ }
-let g:rnvimr_layout = { 'relative': 'editor',
-            \ 'width': &columns,
-            \ 'height': &lines,
-            \ 'col': 0,
-            \ 'row': 0,
-            \ 'style': 'minimal' }
-let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
+
+" Add views for Ranger to adapt the size of floating window
+let g:rnvimr_ranger_views = [
+            \ {'minwidth': 90, 'ratio': []},
+            \ {'minwidth': 50, 'maxwidth': 89, 'ratio': [1,1]},
+            \ {'maxwidth': 49, 'ratio': [1]}
+            \ ]
+
+" Customize the initial layout
+let g:rnvimr_layout = {
+            \ 'relative': 'editor',
+            \ 'width': float2nr(round(0.7 * &columns)),
+            \ 'height': float2nr(round(0.7 * &lines)),
+            \ 'col': float2nr(round(0.15 * &columns)),
+            \ 'row': float2nr(round(0.15 * &lines)),
+            \ 'style': 'minimal'
+            \ }
+
+" Customize multiple preset layouts
+" '{}' represents the initial layout
+let g:rnvimr_presets = [
+            \ {'width': 0.600, 'height': 0.600},
+            \ {},
+            \ {'width': 0.800, 'height': 0.800},
+            \ {'width': 0.950, 'height': 0.950},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
+            \ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
+            \ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
+            \ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
+            \ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}
+            \ ]
+
+" Fullscreen for initial layout
+" let g:rnvimr_layout = {
+"            \ 'relative': 'editor',
+"            \ 'width': &columns,
+"            \ 'height': &lines - 2,
+"            \ 'col': 0,
+"            \ 'row': 0,
+"            \ 'style': 'minimal'
+"            \ }
+"
+" Only use initial preset layout
+" let g:rnvimr_presets = [{}]
 
 
 " ===
@@ -1355,7 +1442,7 @@ let g:move_key_modifier = 'C'
 " ===
 " === any-jump
 " ===
-nnoremap j :AnyJump<CR>
+nnoremap aj :AnyJump<CR>
 let g:any_jump_window_width_ratio  = 0.8
 let g:any_jump_window_height_ratio = 0.9
 
